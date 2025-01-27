@@ -21,7 +21,7 @@ const Producst: React.FC = () => {
 							height={100}
 							name={product.name}
 							description={product.description}
-							className="w-full min-h-full bg-white overflow-hidden shadow-lg transition-scale duration-200 group-hover:scale-110 object-contain items-center"
+							className="w-full min-h-full bg-white overflow-hidden shadow-lg transition-scale duration-200 group-hover:scale-110 object-contain items-center rounded-2xl"
 						/>
 					</li>
 				))}

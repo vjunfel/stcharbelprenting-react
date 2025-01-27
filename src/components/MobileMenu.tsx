@@ -9,8 +9,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ setIsOpen }) => {
 	const location  = useLocation();
 	
 	return (
-		<div className='absolute top-0 right-0 flex flex-col justify-start bg-gray-100 min-w-64 max-w-[500px] min-h-screen shadow z-10'>
-			<div className='w-full flex items-center justify-end px-10 py-6'>
+		<div className='fixed top-0 right-0 bottom-0 flex flex-col justify-start bg-gray-100 min-w-64 max-w-[500px] min-h-screen shadow z-10'>
+			<div className='w-full flex items-center justify-end px-5 py-10'>
 				<X onClick={() => setIsOpen(active => !active)} className=' w-6 h-6 cursor-pointer items-end justify-end text-gray-700 active:bg-blue-100 rounded-full'/>
 			</div>
 			
@@ -20,7 +20,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ setIsOpen }) => {
 						? 'px-10 py-8 h-full w-full active:bg-blue-500 active:text-white  border-blue-500 bg-blue-100' 
 						: 'px-10 py-8 h-full w-full active:bg-blue-500 active:text-white  border-transparent'
 					}>
-						Services
+						Home
 					</li>
 				</Link>
 				

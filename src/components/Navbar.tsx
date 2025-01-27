@@ -7,7 +7,6 @@ const Navbar: React.FC = () => {
 const [isOpen, setIsOpen] = useState<boolean>(false);
 const clickHandler = () => {
 	setIsOpen((open) => !open);
-	console.log("Clicked to open");
 };
 return (
 	<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -21,7 +20,7 @@ return (
 					alt="StCharbel logo"
 					className="rounded-full overflow-hidden w-[40px] h-[40px]"
 				/>
-				<h1 className="text-2xl font-bold">
+				<h1 className="text-2xl font-semibold">
 					<span className="text-gray-100">StCharbel</span>
 					<span className="text-blue-500">Printing</span>
 				</h1>
@@ -32,7 +31,7 @@ return (
 						to="/"
 						className="text-gray-100 hover:text-blue-200"
 					>
-						Services
+						Home
 					</Link>
 					<Link
 						to="/about"
@@ -42,7 +41,7 @@ return (
 					</Link>
 					<Link
 						to="/contact"
-						className="bg-blue-600 hover:bg-blue-900 text-white py-2 px-4 rounded"
+						className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
 					>
 						Contact
 					</Link>

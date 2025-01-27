@@ -84,8 +84,9 @@ const Contact: React.FC = () => {
 										id="name"
 										value={name}
 										autoComplete="name"
+                    placeholder="your name"
 										onChange={(e) => setName(e.target.value)}
-										className="border outline-gray-400 py-3 px-4 block w-full focus:ring-primary focus:border-primary border-gray-500 rounded-md"
+										className="border outline-blue-500 py-3 px-4 block w-full rounded-md"
 									/>
 									{errorMessage === "name-error" && (
 										<p
@@ -112,8 +113,9 @@ const Contact: React.FC = () => {
 										type="email"
 										value={email}
 										autoComplete="email"
+                    placeholder="your email"
 										onChange={(e) => setEmail(e.target.value)}
-										className="border-1 outline-gray-400 py-3 px-4 block w-full focus:ring-primary focus:border-primary border-gray-500 rounded-md"
+										className="border-1 outline-blue-500 py-3 px-4 block w-full  rounded-md"
 									/>
 									{errorMessage === "email-error" ? (
 										<p
@@ -144,9 +146,10 @@ const Contact: React.FC = () => {
 										id="message"
 										name="message"
 										value={message}
+                    placeholder="your message"
 										onChange={(e) => setMessage(e.target.value)}
 										rows={4}
-										className="border outline-gray-400 py-3 px-4 block w-full focus:ring-primary focus:border-primary border-gray-500 rounded-md"
+										className="border outline-blue-500 py-3 px-4 block w-full border-gray-500 rounded-md"
 									/>
 									{errorMessage === "message-error" && (
 										<p
@@ -164,7 +167,7 @@ const Contact: React.FC = () => {
 									<button
 										disabled
 										type="submit"
-                    className="w-full bg-gray-700 hover:bg-blue-600 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2"
+                    className="w-full bg-gray-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2"
 									>
 										<LoaderCircle
 											className="me-2 animate-spin"
@@ -177,7 +180,7 @@ const Contact: React.FC = () => {
 								) : (
 									<button
 										type="submit"
-										className="w-full bg-gray-700 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+										className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md cursor-pointer"
 										onClick={sendEmail}
 									>
 										Send

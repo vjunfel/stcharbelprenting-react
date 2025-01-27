@@ -9,7 +9,7 @@ const ErrorPage: React.FC = () => {
       <p className="text-lg mb-6">We couldn't find the page you were looking for.</p>
       <button
         onClick={() => navigate("/")} // This will redirect the user to the home page
-        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-400 transition duration-300"
+        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
       >
         Return to Home
       </button>

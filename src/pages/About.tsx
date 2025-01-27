@@ -12,14 +12,14 @@ const About: React.FC = () => {
 				</div>
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 					<div className="text-gray-700 flex-1 flex flex-col justify-start items-center p-4">
-						<p className="text-lg mb-4">
+						<p className="text-xl mb-4">
 							St. Charbel Printing services is an innovative solutions to
 							a dynamic and continually changing demands in printing. We
 							made efforts in research and develop techniques to
 							facilitate changes in Printing Industry and accommodate the
 							diverse demand in printing.
 						</p>
-						<p className="text-lg">
+						<p className="text-xl">
 							We are dedicated in creating high-quality printing
 							that suits your needs. We are committed to providing the
 							best service and solutions to your printing problems.
