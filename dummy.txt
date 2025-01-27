@@ -1,0 +1,111 @@
+// Example folder structure for a React app with Vite
+//
+// Project Root
+// ├── public/          // Static files accessible at the root URL
+// │   ├── favicon.ico
+// │   ├── robots.txt
+// │   └── manifest.json
+// ├── src/             // Source code of the app
+// │   ├── assets/      // Images, fonts, and other media
+// │   │   ├── images/
+// │   │   │   ├── logo.png
+// │   │   │   └── hero.jpg
+// │   │   └── fonts/
+// │   ├── components/  // Reusable UI components
+// │   │   ├── Button/
+// │   │   │   ├── Button.jsx
+// │   │   │   ├── Button.module.css
+// │   │   │   └── Button.test.jsx
+// │   │   ├── Header/
+// │   │   │   ├── Header.jsx
+// │   │   │   └── Header.module.css
+// │   ├── features/    // Feature-specific modules
+// │   │   ├── auth/
+// │   │   │   ├── LoginForm.jsx
+// │   │   │   ├── authSlice.js
+// │   │   │   └── api.js
+// │   │   └── profile/
+// │   │       ├── ProfilePage.jsx
+// │   │       ├── profileSlice.js
+// │   │       └── api.js
+// │   ├── hooks/       // Custom React hooks
+// │   │   ├── useAuth.js
+// │   │   ├── useFetch.js
+// │   │   └── useToggle.js
+// │   ├── layouts/     // Layout components
+// │   │   ├── MainLayout.jsx
+// │   │   ├── AuthLayout.jsx
+// │   │   └── layouts.module.css
+// │   ├── pages/       // Top-level pages corresponding to routes
+// │   │   ├── Home.jsx
+// │   │   ├── About.jsx
+// │   │   ├── Dashboard.jsx
+// │   │   └── Error404.jsx
+// │   ├── routes/      // Centralized routing configuration
+// │   │   ├── routesConfig.js
+// │   │   └── ProtectedRoute.jsx
+// │   ├── services/    // API logic and external services
+// │   │   ├── api.js
+// │   │   ├── authService.js
+// │   │   └── httpClient.js
+// │   ├── stores/      // Global state management (e.g., Redux, Zustand)
+// │   │   ├── store.js
+// │   │   ├── authSlice.js
+// │   │   └── themeSlice.js
+// │   ├── styles/      // Global styles and CSS utilities
+// │   │   ├── global.css
+// │   │   ├── theme.css
+// │   │   └── variables.css
+// │   ├── utils/       // Utility functions
+// │   │   ├── dateFormatter.js
+// │   │   ├── debounce.js
+// │   │   └── validateEmail.js
+// │   ├── App.jsx      // Root app component
+// │   ├── main.jsx     // Entry point for Vite
+// ├── .env             // Environment variables
+// ├── package.json     // Dependencies and scripts
+// ├── vite.config.js   // Vite configuration
+// └── README.md        // Project documentation
+
+// Below is an example App.jsx file
+
+// App.jsx
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import AuthLayout from './layouts/AuthLayout';
+import Home from './pages/Home';
+import About from './pages/About';
+import Dashboard from './pages/Dashboard';
+import Error404 from './pages/Error404';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+// main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './styles/global.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
