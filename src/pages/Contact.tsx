@@ -1,37 +1,41 @@
-import { LoaderCircle, MapPin, Phone } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import ContactMap from "../components/ContactMap";
 
 const Contact: React.FC = () => {
 	const [name, setName] = useState<string>("");
+	const [phone, setPhone] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [message, setMessage] = useState<string>("");
 	const [sending, setSending] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const [status, setStatus] = useState<boolean | null>(null);
-  
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 	const templateParams = {
 		from_name: email,
 		to_name: "StCharbel Printing",
+		phone,
 		message,
 	};
 
-	const sendEmail = async (event: React.FormEvent<HTMLButtonElement>) => {
+	const sendEmail = (event: React.FormEvent<HTMLButtonElement>) => {
 		event.preventDefault();
-    
+
 		if (!name) return setErrorMessage("name-error");
-    if (!email) return setErrorMessage("email-error");
-    if (!emailRegex.test(email)) {
-      setErrorMessage("email-invalid");
-      return;
-    }
+		if (!phone) return setErrorMessage("phone-error");
+		if (!email) return setErrorMessage("email-error");
+		if (!emailRegex.test(email)) {
+			setErrorMessage("email-invalid");
+			return;
+		}
 		if (!message) return setErrorMessage("message-error");
 
 		setSending(true);
 
-		await emailjs
+		emailjs
 			.send(
 				import.meta.env.VITE_REACT_EMAILJS_SERVICE_ID ?? "",
 				import.meta.env.VITE_REACT_EMAILJS_TEMPLATE_ID ?? "",
@@ -43,15 +47,16 @@ const Contact: React.FC = () => {
 				setStatus(true);
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error("Failed...", error);
 			});
 
 		setName("");
 		setEmail("");
+		setPhone("");
 		setMessage("");
 		console.log("Message sent!");
 		setSending(false);
-    setErrorMessage("");
+		setErrorMessage("");
 	};
 
 	return (
@@ -67,15 +72,21 @@ const Contact: React.FC = () => {
 				</div>
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-					{/* Contact Form */}
 					<div className="bg-white text-gray-700 rounded-lg shadow-lg p-8 border border-gray-200">
+						{status && (
+							<p className="bg-green-100 text-green-700 text-center p-4 mb-4 rounded-lg">
+								Message sent successfully!
+							</p>
+						)}
+
+						{/* Contact Form */}
 						<form className="grid grid-cols-1 gap-y-6">
 							<div>
 								<label
 									htmlFor="name"
 									className="block text-sm font-medium text-gray-700"
 								>
-									Name
+									Name<span className="text-red-500">*</span>
 								</label>
 								<div className="mt-1 ">
 									<input
@@ -84,7 +95,7 @@ const Contact: React.FC = () => {
 										id="name"
 										value={name}
 										autoComplete="name"
-                    placeholder="your name"
+										placeholder="your name"
 										onChange={(e) => setName(e.target.value)}
 										className="border outline-blue-500 py-3 px-4 block w-full rounded-md"
 									/>
@@ -99,12 +110,39 @@ const Contact: React.FC = () => {
 									)}
 								</div>
 							</div>
+							<div className="space-y-2">
+								<label
+									htmlFor="phone"
+									className="block text-sm font-medium text-gray-700"
+								>
+									Phone<span className="text-red-500">*</span>
+								</label>
+								<input
+									id="phone"
+									placeholder="0900-123-4567"
+									type="number"
+									required
+									name="phone"
+									value={phone}
+									onChange={(e) => setPhone(e.target.value)}
+									className="border outline-blue-500 py-3 px-4 block w-full rounded-md"
+								/>
+								{errorMessage === "phone-error" && (
+									<p
+										className="mt-2 text-xs text-destructive"
+										role="alert"
+										aria-live="polite"
+									>
+										Phone is required
+									</p>
+								)}
+							</div>
 							<div>
 								<label
 									htmlFor="email"
 									className="block text-sm font-medium text-gray-700"
 								>
-									Email
+									Email<span className="text-red-500">*</span>
 								</label>
 								<div className="mt-1">
 									<input
@@ -113,7 +151,7 @@ const Contact: React.FC = () => {
 										type="email"
 										value={email}
 										autoComplete="email"
-                    placeholder="your email"
+										placeholder="your email"
 										onChange={(e) => setEmail(e.target.value)}
 										className="border-1 outline-blue-500 py-3 px-4 block w-full  rounded-md"
 									/>
@@ -125,13 +163,15 @@ const Contact: React.FC = () => {
 										>
 											Email is required
 										</p>
-									) : errorMessage === "email-invalid" ? (<p
-                    className="text-md text-red-600"
-                    role="alert"
-                    aria-live="polite"
-                  >
-                    Invalid email address
-                  </p>) : null }
+									) : errorMessage === "email-invalid" ? (
+										<p
+											className="text-md text-red-600"
+											role="alert"
+											aria-live="polite"
+										>
+											Invalid email address
+										</p>
+									) : null}
 								</div>
 							</div>
 							<div>
@@ -139,14 +179,14 @@ const Contact: React.FC = () => {
 									htmlFor="message"
 									className="block text-sm font-medium text-gray-700"
 								>
-									Message
+									Message<span className="text-red-500">*</span>
 								</label>
 								<div className="mt-1">
 									<textarea
 										id="message"
 										name="message"
 										value={message}
-                    placeholder="your message"
+										placeholder="your message"
 										onChange={(e) => setMessage(e.target.value)}
 										rows={4}
 										className="border outline-blue-500 py-3 px-4 block w-full border-gray-500 rounded-md"
@@ -167,7 +207,7 @@ const Contact: React.FC = () => {
 									<button
 										disabled
 										type="submit"
-                    className="w-full bg-gray-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2"
+										className="w-full bg-gray-700 text-white py-3 px-4 rounded-md flex items-center justify-center gap-2"
 									>
 										<LoaderCircle
 											className="me-2 animate-spin"
@@ -180,45 +220,18 @@ const Contact: React.FC = () => {
 								) : (
 									<button
 										type="submit"
-										className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md cursor-pointer"
+										className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-md cursor-pointer"
 										onClick={sendEmail}
 									>
 										Send
 									</button>
 								)}
 							</div>
-
-							{status && (
-								<p className="bg-green-100 text-green-700 text-center p-4 mt-4 rounded-lg">
-									Message sent successfully!
-								</p>
-							)}
 						</form>
 					</div>
 
 					{/* Map */}
-					<div className="bg-white rounded-lg p-8">
-						<h2 className="text-xl font-semibold text-gray-900 mb-4">
-							Our Location
-						</h2>
-						<div className="mt-4 text-gray-600 flex flex-col gap-4">
-							<div className="font-medium flex flex-row gap-2 items-center">
-								<MapPin size={20} className="min-w-[20px] min-h-[20px]"/>
-								<p>Grand Terrace Subdivision, Consolacion, Cebu, Philippines</p>
-							</div>
-							<div className="font-medium flex flex-row gap-2 items-center">
-								<Phone size={20} className="min-w-[20px] min-h-[20px]"/> <p>09123456789</p>
-							</div>
-						</div>
-						<div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden mt-5">
-							<iframe
-								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1962.3000030706187!2d123.94505429985468!3d10.37383231399099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a9a29c0d36dcad%3A0x1d8d5ddf9cdfe7c2!2sGrand%20Terrace%20Subdivision%2C%20Consolacion%2C%20Cebu!5e0!3m2!1sen!2sph!4v1737352692754!5m2!1sen!2sph"
-								width="500"
-								height="300"
-								loading="lazy"
-							></iframe>
-						</div>
-					</div>
+					<ContactMap />
 				</div>
 			</div>
 		</section>
