@@ -203,11 +203,11 @@ const Contact: React.FC = () => {
 						</h2>
 						<div className="mt-4 text-gray-600 flex flex-col gap-4">
 							<div className="font-medium flex flex-row gap-2 items-center">
-								<MapPin size={20} />{" "}
+								<MapPin size={20} className="min-w-[20px] min-h-[20px]"/>
 								<p>Grand Terrace Subdivision, Consolacion, Cebu, Philippines</p>
 							</div>
 							<div className="font-medium flex flex-row gap-2 items-center">
-								<Phone size={20} /> <p>09123456789</p>
+								<Phone size={20} className="min-w-[20px] min-h-[20px]"/> <p>09123456789</p>
 							</div>
 						</div>
 						<div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden mt-5">

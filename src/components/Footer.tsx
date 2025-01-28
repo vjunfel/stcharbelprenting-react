@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Footer: React.FC = () => {
 	const year = new Date();
 	return (
-		<div className="w-full flex items-center justify-center">
-			<div className="w-full max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8 flex md:flex-row justify-between flex-col text-center gap-4">
+		<div className="w-full flex items-center justify-center flex-col py-10 gap-4">
+			<div className="w-full max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8 flex md:flex-row justify-between flex-col text-center gap-4">
 				<p className="w-fulltext-base text-gray-200">
 					© {year.getFullYear()} StCharbelPrinting. All rights reserved.
 				</p>
@@ -15,6 +15,9 @@ const Footer: React.FC = () => {
 					<Link to='#' className="hover:text-pink-500"><Instagram /></Link>
 					<Link to='#' className="hover:text-blue-400"><Twitter /></Link>
 					<Link to='#' className="hover:text-red-700"><Youtube /></Link>
+				</div>
+				<div className="text-gray-200">
+					<Link to="https://junfel.xyz">Develop by: Junfel</Link>
 				</div>
 			</div>
 		</div>
