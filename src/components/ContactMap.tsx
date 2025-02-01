@@ -1,26 +1,35 @@
 import React from "react";
-import { MapPin, Phone } from "lucide-react";
+import { AtSign, MapPin, Phone } from "lucide-react";
+import { BusinessInfo } from "../constant/data";
 
 const ContactMap: React.FC = () => {
 	return (
 		<div className="bg-white rounded-lg p-8">
 			<h2 className="text-xl font-semibold text-gray-900 mb-4">
-				Our Location
+				You can contact us directly via:
 			</h2>
 			<div className="mt-4 text-gray-600 flex flex-col gap-4">
 				<div className="font-medium flex flex-row gap-2 items-center">
-					<MapPin
+					<AtSign
 						size={20}
 						className="min-w-[20px] min-h-[20px]"
 					/>
-					<p>Grand Terrace Subdivision, Consolacion, Cebu, Philippines</p>
+					<p>{BusinessInfo.email}</p>
 				</div>
 				<div className="font-medium flex flex-row gap-2 items-center">
 					<Phone
 						size={20}
 						className="min-w-[20px] min-h-[20px]"
 					/>
-					<p>09123456789</p>
+					<p>{BusinessInfo.phone}</p>
+				</div>
+
+				<div className="font-medium flex flex-row gap-2 items-center">
+					<MapPin
+						size={20}
+						className="min-w-[20px] min-h-[20px]"
+					/>
+					<p>{BusinessInfo.address}</p>
 				</div>
 			</div>
 			<div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden mt-5">

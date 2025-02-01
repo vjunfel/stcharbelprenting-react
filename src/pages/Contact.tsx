@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
 						Contact Us
 					</h1>
 					<p className="mt-4 text-lg leading-6 text-gray-500">
-						Get in touch for a quote or any questions about our services
+						Get in touch for a quote or any questions about our services.
 					</p>
 				</div>
 

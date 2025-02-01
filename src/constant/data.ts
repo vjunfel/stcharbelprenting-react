@@ -72,3 +72,10 @@ export const productItem = [
     alt: "T-shirt"
   },
 ]
+
+export const BusinessInfo = {
+  phone: "09234293502",
+  email: "cagatajerry@gmail.com",
+  facebook: "Jerbox Jerbox",
+  address: "Grand Terrace Subdivision, Consolacion, Cebu, Philippines"
+}
